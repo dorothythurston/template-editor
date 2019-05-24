@@ -2,6 +2,8 @@
   "templateEditor": {
     "header": "Template Editor",
     "addElement": "Add Element",
-    "templatePreview": "Template Preview"
+    "templatePreview": "Template Preview",
+    "watermark": "Watermark",
+    "content": "Content"
   }
 }
