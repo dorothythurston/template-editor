@@ -1,3 +1,7 @@
 {
-  "templateEditor": "Template Editor"
+  "templateEditor": {
+    "header": "Template Editor",
+    "addElement": "Add Element",
+    "templatePreview": "Template Preview"
+  }
 }
