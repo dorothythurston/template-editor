@@ -15,5 +15,9 @@
     "header": "Edit Feature: ",
     "label": "Text",
     "update": "Update"
+  },
+  "styleEditor": {
+    "header": "Styles",
+    "update": "Update"
   }
 }
