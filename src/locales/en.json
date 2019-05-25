@@ -4,6 +4,11 @@
     "addElement": "Add Element",
     "templatePreview": "Template Preview",
     "watermark": "Watermark",
-    "content": "Content"
+    "content": "Content",
+    "exampleContentText": "Add more text!",
+    "exampleWatermarkText": "Example"
+  },
+  "templateElementEditor": {
+    "header": "Edit Element: "
   }
 }
