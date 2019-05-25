@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 const formatOption = (option, index) => (<option value={option.value} key={index}>{option.label}</option>);
 
 function DropdownSelector(props) {
-  const [value, updateValue ] = useState(null)
+  const [value, updateValue ] = useState(props.defaultValue)
 
   const onSubmit = (event) => {
     props.handleSubmit(value)
@@ -16,7 +16,7 @@ function DropdownSelector(props) {
     <form onSubmit={onSubmit}>
       <label>
         {props.label}
-        <select value={value || props.defaultValue} onChange={onChange}>
+        <select value={value} onChange={onChange}>
           {props.options.map((option, i) => formatOption(option, i))}
         </select>
       </label>

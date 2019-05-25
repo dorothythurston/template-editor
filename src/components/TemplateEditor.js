@@ -5,18 +5,20 @@ import T from '../utils/i18n';
 const defaultTemplate = {
   content: []
 }
-const options = [
-  { value: 'content', label: T.translate('templateEditor.content')},
-  { value: 'watermark', label: T.translate('templateEditor.watermark')}
-]
+const elements = {
+  content: [{ text: 'Add more!'}],
+  watermark: { text: 'watermark!'},
+}
 
-const TemplateElementSelector = () => (
+const options = Object.keys(elements).map(key => ({ value: key, label: T.translate(`templateEditor.${key}`)}));
+
+const TemplateElementSelector = (props) => (
   <DropDownSelector
     options={options}
     label={T.translate('templateEditor.featureSelectLabel')}
     defaultValue={options[0].value}
     submitLabel={T.translate('templateEditor.featureSelectSubmit')}
-    handleSubmit={() => 'mocked'}
+    handleSubmit={(selectedElement) => props.onSubmit({ ...props.template, [selectedElement]: elements[selectedElement] })}
   />
 )
 
@@ -26,7 +28,7 @@ function TemplateEditor(props) {
   return (
     <div className="TemplateEditor">
       <header>{T.translate('templateEditor.header')}</header>
-      <TemplateElementSelector/>
+      <TemplateElementSelector template={template} onSubmit={updateTemplate}/>
       <TemplatePreview template={template}/>
     </div>
   );
