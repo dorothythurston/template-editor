@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { render, waitForElement, fireEvent, cleanup } from 'react-testing-library';
 import DropDownSelector from './DropDownSelector';
+import 'jest-dom/extend-expect';
 
 const options = [
   { value: 'first choice', label: 'First Choice Label ONLY'},
@@ -9,7 +10,6 @@ const options = [
 
 const selectLabel = 'Cool Label';
 const submitLabel = 'Submit Label';
-const handleSubmit = () => 'mocked';
 
 afterEach(cleanup)
 
@@ -29,24 +29,32 @@ it('renders', async () => {
   await waitForElement(() => getByText(selectLabel));
 });
 
-it('renders', async () => {
-  let stateValue;
+it('selects a value on submit', async () => {
+  const originalValue = 'This is the original value';
+  const valueToBeUpdatedTestId = 'value-to-be-updated';
 
-  const handleSubmit = (event) => {
-    stateValue = event;
-  };
+  const MockContainerComponent = (props) => {
+    const [ value, updateValue] = useState(originalValue)
 
-  const { getByText } = render(
-    <DropDownSelector
-      options={options}
-      label={selectLabel}
-      defaultValue={options[0].value}
-      submitLabel={submitLabel}
-      handleSubmit={handleSubmit}
-    />
+    return (
+        <div>
+        <header data-testid={valueToBeUpdatedTestId}>{value}</header>
+        <DropDownSelector
+          options={options}
+          label={selectLabel}
+          defaultValue={options[0].value}
+          submitLabel={submitLabel}
+          handleSubmit={updateValue}
+        />
+      </div>
+    );
+  }
+
+  const { getByText, getByTestId } = render(
+    <MockContainerComponent/>
   );
 
-  fireEvent.click(getByText(options[1].label));
   fireEvent.click(getByText(submitLabel));
-  // expect(stateValue).toBe(options[1].value) TODO: Figure out why this isn't working
+  const updatedHeader = await waitForElement(() => getByTestId(valueToBeUpdatedTestId));
+  expect(updatedHeader).toHaveTextContent(options[0].value);
 });
