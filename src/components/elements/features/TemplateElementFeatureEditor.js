@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import T from '../utils/i18n';
+import T from '../../../utils/i18n';
 
 function TemplateElementFeatureEditor(props) {
   const [feature, updateFeature] = useState({ text: 'initial feature text'});

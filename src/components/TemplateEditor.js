@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import TemplatePreview from './TemplatePreview';
-import TemplateElementEditor from './TemplateElementEditor';
+import ContentElement from './elements/ContentElement';
 import DropDownSelector from './DropDownSelector';
-import StyleEditor from './StyleEditor';
+import StylesElement from './elements/StylesElement';
 import T from '../utils/i18n';
 const defaultTemplate = {
   content: []
@@ -35,8 +35,8 @@ function TemplateEditor(props) {
     <div className="TemplateEditor">
       <header>{T.translate('templateEditor.header')}</header>
       <TemplateElementSelector template={template} onSubmit={updateTemplate}/>
-      {Object.keys(template).map((element, i) => <TemplateElementEditor key={i} elementName={element} values={template[element]} onUpdate={onUpdateElement()} />)};
-      <StyleEditor/>
+      {Object.keys(template).map((element, i) => <ContentElement key={i} elementName={element} values={template[element]} onUpdate={onUpdateElement()} />)};
+      <StylesElement/>
       <TemplatePreview template={template}/>
     </div>
   );

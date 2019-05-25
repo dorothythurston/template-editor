@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, waitForElement } from 'react-testing-library';
-import StyleEditor from './StyleEditor';
+import StylesElement from './StylesElement';
 
 it('renders', async () => {
-  const { getByText } = render(<StyleEditor />);
+  const { getByText } = render(<StylesElement />);
 
   await waitForElement(() => getByText('Styles'));
 });

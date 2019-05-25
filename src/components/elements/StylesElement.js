@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Checkbox from './formElements/Checkbox';
-import RadioButtons from './formElements/RadioButtons';
-import T from '../utils/i18n';
+import Checkbox from './inputs/Checkbox';
+import RadioButtons from './inputs/RadioButtons';
+import T from '../../utils/i18n';
 
 /*
 const styleOptions = {
@@ -26,7 +26,7 @@ const defaultStyles = {
   bold: false
 };
 
-function StyleEditor(props) {
+function StylesElement(props) {
   const [styles, updateStyles] = useState(defaultStyles);
 
   const onSubmit = (event) => {
@@ -39,14 +39,14 @@ function StyleEditor(props) {
   };
 
   return (
-    <div className="StyleEditor">
-      <header>{T.translate('styleEditor.header')}</header>
+    <div className="StylesElement">
+      <header>{T.translate('stylesElement.header')}</header>
       <form onSubmit={onSubmit}>
         {Object.keys(styleOptions).map(key => styleOptions[key](onChange, styles[key]))}
-        <input type="submit" value={T.translate('styleEditor.update')} />
+        <input type="submit" value={T.translate('stylesElement.update')} />
       </form>
     </div>
   );
 }
 
-export default StyleEditor;
+export default StylesElement;

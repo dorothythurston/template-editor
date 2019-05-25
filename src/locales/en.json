@@ -8,7 +8,7 @@
     "exampleContentText": "Add more text!",
     "exampleWatermarkText": "Example"
   },
-  "templateElementEditor": {
+  "contentElement": {
     "header": "Edit Element: "
   },
   "templateElementFeatureEditor": {
@@ -16,7 +16,7 @@
     "label": "Text",
     "update": "Update"
   },
-  "styleEditor": {
+  "stylesElement": {
     "header": "Styles",
     "update": "Update"
   }
