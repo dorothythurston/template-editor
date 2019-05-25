@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
-const formatOption = (option, index) => (<option value={option.value} key={index}>{option.label}</option>);
+import React, { useState } from "react";
+const formatOption = (option, index) => (
+  <option value={option.value} key={index}>
+    {option.label}
+  </option>
+);
 
 function DropdownSelector(props) {
-  const [value, updateValue ] = useState(props.defaultValue)
+  const [value, updateValue] = useState(props.defaultValue);
 
-  const onSubmit = (event) => {
-    props.handleSubmit(value)
+  const onSubmit = event => {
+    props.handleSubmit(value);
     event.preventDefault();
-  }
+  };
   const onChange = event => {
-    updateValue(event.target.value)
-  }
+    updateValue(event.target.value);
+  };
 
   return (
     <form onSubmit={onSubmit}>
@@ -23,6 +27,6 @@ function DropdownSelector(props) {
       <input type="submit" value={props.submitLabel} />
     </form>
   );
-};
+}
 
 export default DropdownSelector;

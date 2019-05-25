@@ -1,5 +1,5 @@
-import React from 'react';
-import TemplateEditor from './TemplateEditor';
+import React from "react";
+import TemplateEditor from "./TemplateEditor";
 
 function App() {
   return (

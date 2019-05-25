@@ -1,52 +1,52 @@
-import React, { useState } from 'react';
-import { render, waitForElement, fireEvent, cleanup } from 'react-testing-library';
-import ContentElement from './ContentElement';
-import 'jest-dom/extend-expect';
+import React, { useState } from "react";
+import {
+  render,
+  waitForElement,
+  fireEvent,
+  cleanup
+} from "react-testing-library";
+import ContentElement from "./ContentElement";
+import "jest-dom/extend-expect";
 
 afterEach(cleanup);
 
-it('renders', async () => {
-  const elementName = 'watermark';
-  const values = { text: 'great text value' };
+it("renders", async () => {
+  const elementName = "watermark";
+  const values = { text: "great text value" };
 
   const { getByText } = render(
-    <ContentElement
-      elementName={elementName}
-      values={values}
-    />
+    <ContentElement elementName={elementName} values={values} />
   );
 
   await waitForElement(() => getByText(JSON.stringify(values)));
 });
 
-it('selects a value on update', async () => {
-  const originalValue = 'This is the original value';
-  const valueToBeUpdatedTestId = 'value-to-be-updated';
-  const updateLabel = 'Update';
-  const elementName = 'content';
-  const feature = {"text":"initial feature text"};
-  const defaultValue = { [elementName]: [feature]};
+it("selects a value on update", async () => {
+  const originalValue = "This is the original value";
+  const valueToBeUpdatedTestId = "value-to-be-updated";
+  const updateLabel = "Update";
+  const elementName = "content";
+  const feature = { text: "initial feature text" };
+  const defaultValue = { [elementName]: [feature] };
 
-  const MockContainerComponent = (props) => {
-    const [ value, updateValue] = useState(originalValue)
+  const MockContainerComponent = props => {
+    const [value, updateValue] = useState(originalValue);
 
     return (
-        <div>
-        <header data-testid={valueToBeUpdatedTestId}>{JSON.stringify(value)}</header>
-        <ContentElement
-          elementName={elementName}
-          onUpdate={updateValue}
-        />
+      <div>
+        <header data-testid={valueToBeUpdatedTestId}>
+          {JSON.stringify(value)}
+        </header>
+        <ContentElement elementName={elementName} onUpdate={updateValue} />
       </div>
     );
-  }
+  };
 
-  const { getByText, getByTestId } = render(
-    <MockContainerComponent/>
-  );
+  const { getByText, getByTestId } = render(<MockContainerComponent />);
 
   fireEvent.click(getByText(updateLabel));
-  const updatedHeader = await waitForElement(() => getByTestId(valueToBeUpdatedTestId));
+  const updatedHeader = await waitForElement(() =>
+    getByTestId(valueToBeUpdatedTestId)
+  );
   expect(updatedHeader).toHaveTextContent(JSON.stringify(defaultValue));
 });
-
