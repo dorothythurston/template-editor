@@ -11,7 +11,7 @@
   "contentElement": {
     "header": "Edit Element: "
   },
-  "templateElementFeatureEditor": {
+  "textFeature": {
     "header": "Edit Feature: ",
     "label": "Text",
     "update": "Update"

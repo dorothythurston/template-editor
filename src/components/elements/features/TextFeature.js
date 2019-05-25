@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import T from '../../../utils/i18n';
 
-function TemplateElementFeatureEditor(props) {
+function TextFeature(props) {
   const [feature, updateFeature] = useState({ text: 'initial feature text'});
 
   const onSubmit = (event) => {
@@ -13,17 +13,17 @@ function TemplateElementFeatureEditor(props) {
   }
 
   return (
-    <div className="TemplateElementFeatureEditor">
-      <header>{T.translate('templateElementFeatureEditor.header')}</header>
+    <div className="textFeature">
+      <header>{T.translate('textFeature.header')}</header>
       <form onSubmit={onSubmit}>
         <label>
-          {T.translate('templateElementFeatureEditor.label')}
+          {T.translate('textFeature.label')}
           <input type="text" name="text" onChange={onChange}/>
         </label>
-        <input type="submit" value={T.translate('templateElementFeatureEditor.update')} />
+        <input type="submit" value={T.translate('textFeature.update')} />
       </form>
     </div>
   );
 }
 
-export default TemplateElementFeatureEditor;
+export default TextFeature;

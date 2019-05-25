@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { render, waitForElement, fireEvent, cleanup } from 'react-testing-library';
-import TemplateElementFeatureEditor from './TemplateElementFeatureEditor';
+import TextFeature from './TextFeature';
 import 'jest-dom/extend-expect';
 
 afterEach(cleanup);
@@ -10,7 +10,7 @@ it('renders', async () => {
   const updateLabel = 'Update';
 
   const { getByText } = render(
-    <TemplateElementFeatureEditor
+    <TextFeature
       onUpdate={onUpdate}
     />
   );
@@ -30,7 +30,7 @@ it('selects a value on submit', async () => {
     return (
         <div>
         <header data-testid={valueToBeUpdatedTestId}>{JSON.stringify(value)}</header>
-        <TemplateElementFeatureEditor
+        <TextFeature
           onUpdate={updateValue}
         />
       </div>

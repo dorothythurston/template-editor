@@ -1,6 +1,6 @@
 import React from 'react';
 import T from '../../utils/i18n';
-import TemplateElementFeatureEditor from './features/TemplateElementFeatureEditor';
+import TextFeature from './features/TextFeature';
 
 function ContentElement(props) {
   const { elementName, values, onUpdate } = props;
@@ -12,7 +12,7 @@ function ContentElement(props) {
     <div className="ContentElement">
       <header>{T.translate('contentElement.header') + T.translate(`templateEditor.${elementName}`)}</header>
       <p>{JSON.stringify(values)}</p>
-      <TemplateElementFeatureEditor onUpdate={onUpdateFeature}/>
+      <TextFeature onUpdate={onUpdateFeature}/>
     </div>
   );
 }
