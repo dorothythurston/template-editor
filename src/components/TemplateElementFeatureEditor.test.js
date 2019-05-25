@@ -1,31 +1,28 @@
 import React, { useState } from 'react';
 import { render, waitForElement, fireEvent, cleanup } from 'react-testing-library';
-import TemplateElementEditor from './TemplateElementEditor';
+import TemplateElementFeatureEditor from './TemplateElementFeatureEditor';
 import 'jest-dom/extend-expect';
 
 afterEach(cleanup);
 
 it('renders', async () => {
-  const elementName = 'watermark';
-  const values = { text: 'great text value' };
+  const onUpdate = () => 'mocked';
+  const updateLabel = 'Update';
 
   const { getByText } = render(
-    <TemplateElementEditor
-      elementName={elementName}
-      values={values}
+    <TemplateElementFeatureEditor
+      onUpdate={onUpdate}
     />
   );
 
-  await waitForElement(() => getByText(JSON.stringify(values)));
+  await waitForElement(() => getByText(updateLabel));
 });
 
-it('selects a value on update', async () => {
+it('selects a value on submit', async () => {
   const originalValue = 'This is the original value';
   const valueToBeUpdatedTestId = 'value-to-be-updated';
   const updateLabel = 'Update';
-  const elementName = 'content';
-  const feature = {"text":"initial feature text"};
-  const defaultValue = { [elementName]: [feature]};
+  const defaultValue = {"text":"initial feature text"};
 
   const MockContainerComponent = (props) => {
     const [ value, updateValue] = useState(originalValue)
@@ -33,8 +30,7 @@ it('selects a value on update', async () => {
     return (
         <div>
         <header data-testid={valueToBeUpdatedTestId}>{JSON.stringify(value)}</header>
-        <TemplateElementEditor
-          elementName={elementName}
+        <TemplateElementFeatureEditor
           onUpdate={updateValue}
         />
       </div>
@@ -49,4 +45,3 @@ it('selects a value on update', async () => {
   const updatedHeader = await waitForElement(() => getByTestId(valueToBeUpdatedTestId));
   expect(updatedHeader).toHaveTextContent(JSON.stringify(defaultValue));
 });
-

@@ -26,11 +26,15 @@ const TemplateElementSelector = (props) => (
 function TemplateEditor(props) {
   const [template, updateTemplate] = useState(defaultTemplate);
 
+  const onUpdateElement = () => (updatedElement) => {
+    updateTemplate({ ...props.template, ...updatedElement });
+  }
+
   return (
     <div className="TemplateEditor">
       <header>{T.translate('templateEditor.header')}</header>
       <TemplateElementSelector template={template} onSubmit={updateTemplate}/>
-      {Object.keys(template).map((element, i) => <TemplateElementEditor  key={i} elementName={element} values={template[element]} onUpdate={() => 'mocked'}/>)};
+      {Object.keys(template).map((element, i) => <TemplateElementEditor key={i} elementName={element} values={template[element]} onUpdate={onUpdateElement()} />)};
       <TemplatePreview template={template}/>
     </div>
   );

@@ -10,5 +10,10 @@
   },
   "templateElementEditor": {
     "header": "Edit Element: "
+  },
+  "templateElementFeatureEditor": {
+    "header": "Edit Feature: ",
+    "label": "Text",
+    "update": "Update"
   }
 }
