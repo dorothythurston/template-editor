@@ -5,8 +5,10 @@
     "templatePreview": "Template Preview",
     "watermark": "Watermark",
     "content": "Content",
+    "styles": "Styles",
     "exampleContentText": "Add more text!",
-    "exampleWatermarkText": "Example"
+    "exampleWatermarkText": "Example",
+    "featureSelectSubmit": "Add element"
   },
   "contentElement": {
     "header": "Edit Element: "

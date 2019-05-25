@@ -7,12 +7,18 @@ import T from '../utils/i18n';
 const defaultTemplate = {
   content: []
 };
-const elements = {
-  content: [{ text: T.translate('templateEditor.exampleContentText')}],
-  watermark: { text: T.translate('templateEditor.exampleWatermarkText')},
+
+const elementEditors = {
+  content: (element, i, onUpdateElement, values) => <ContentElement key={i} elementName={element} values={values} onUpdate={onUpdateElement()} />,
+  styles: (element, i) => <StylesElement key={i}/>
 };
 
-const options = Object.keys(elements).map(key => ({ value: key, label: T.translate(`templateEditor.${key}`)}));
+const elementDefaults = {
+  content: [],
+  styles: {}
+};
+
+const options = Object.keys(elementDefaults).map(key => ({ value: key, label: T.translate(`templateEditor.${key}`)}));
 
 const TemplateElementSelector = (props) => (
   <DropDownSelector
@@ -20,7 +26,7 @@ const TemplateElementSelector = (props) => (
     label={T.translate('templateEditor.featureSelectLabel')}
     defaultValue={options[0].value}
     submitLabel={T.translate('templateEditor.featureSelectSubmit')}
-    handleSubmit={(selectedElement) => props.onSubmit({ ...props.template, [selectedElement]: elements[selectedElement] })}
+    handleSubmit={(selectedElement) => props.onSubmit({ ...props.template, [selectedElement]: elementDefaults[selectedElement] })}
   />
 );
 
@@ -35,8 +41,7 @@ function TemplateEditor(props) {
     <div className="TemplateEditor">
       <header>{T.translate('templateEditor.header')}</header>
       <TemplateElementSelector template={template} onSubmit={updateTemplate}/>
-      {Object.keys(template).map((element, i) => <ContentElement key={i} elementName={element} values={template[element]} onUpdate={onUpdateElement()} />)};
-      <StylesElement/>
+      {Object.keys(template).map((element, i) => elementEditors[element](element, i, onUpdateElement, template[element]))};
       <TemplatePreview template={template}/>
     </div>
   );
