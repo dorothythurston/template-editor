@@ -53,13 +53,22 @@ function TemplateEditor(props) {
   };
 
   return (
-    <div className="TemplateEditor">
-      <header>{T.translate("templateEditor.header")}</header>
-      <TemplateElementSelector template={template} onSubmit={updateTemplate} />
-      {Object.keys(template).map((element, i) =>
-        elementEditors[element](element, i, onUpdateElement, template[element])
-      )}
-      ;
+    <div className="Container">
+      <div className="TemplateEditor">
+        <header>{T.translate("templateEditor.header")}</header>
+        <TemplateElementSelector
+          template={template}
+          onSubmit={updateTemplate}
+        />
+        {Object.keys(template).map((element, i) =>
+          elementEditors[element](
+            element,
+            i,
+            onUpdateElement,
+            template[element]
+          )
+        )}
+      </div>
       <TemplatePreview template={template} />
     </div>
   );

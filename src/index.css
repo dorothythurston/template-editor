@@ -1,5 +1,4 @@
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -10,4 +9,34 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.TemplateEditor {
+  padding: 10px;
+  border: 1px solid black;
+  background: rgb(230, 226, 230);
+  float: left;
+}
+
+.Container {
+  margin: 20px;
+}
+
+.TemplatePreview {
+  padding: 10px;
+  border: 1px solid black;
+  background: rgb(230, 226, 230);
+  float: right;
+}
+
+.ContentElement {
+  padding: 10px;
+  background: whitesmoke;
+  border: 1px solid black;
+}
+
+.StylesElement {
+  padding: 10px;
+  background: whitesmoke;
+  border: 1px solid black;
 }
