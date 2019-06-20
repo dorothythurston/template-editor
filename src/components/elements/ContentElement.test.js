@@ -12,13 +12,13 @@ afterEach(cleanup);
 
 it("renders", async () => {
   const elementName = "watermark";
-  const values = { text: "great text value" };
+  const features = { text: "great text value" };
 
   const { getByText } = render(
-    <ContentElement elementName={elementName} values={values} />
+    <ContentElement elementName={elementName} features={features} />
   );
 
-  await waitForElement(() => getByText(JSON.stringify(values)));
+  await waitForElement(() => getByText(JSON.stringify(features)));
 });
 
 it("selects a value on update", async () => {

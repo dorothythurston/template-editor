@@ -1,11 +1,46 @@
 import React from "react";
 import T from "../../utils/i18n";
 import TextFeature from "./features/TextFeature";
+import DropDownSelector from "../DropDownSelector";
+
+const featureEditors = {
+  text: (featureObject, i, onUpdateFeatureFunction) => (
+    <TextFeature
+      key={i}
+      onUpdate={onUpdateFeatureFunction(i)}
+      value={featureObject.text}
+    />
+  )
+};
+
+const featureDefaults = {
+  text: { text: "Update me..." }
+};
+
+const options = Object.keys(featureDefaults).map(key => ({
+  value: key,
+  label: T.translate(`features.${key}`)
+}));
+
+const ContentFeatureSelector = props => (
+  <DropDownSelector
+    options={options}
+    label={T.translate("features.featureSelectLabel")}
+    defaultValue={options[0].value}
+    submitLabel={T.translate("features.featureSelectSubmit")}
+    handleSubmit={selectedFeature =>
+      props.onSubmit(featureDefaults[selectedFeature])
+    }
+  />
+);
 
 function ContentElement(props) {
-  const { elementName, values, onUpdate } = props;
-  const onUpdateFeature = feature => {
-    onUpdate({ [elementName]: [feature] });
+  const { elementName, features, onUpdate } = props;
+
+  const onUpdateFeatureFunction = i => feature => {
+    const updatedElement = [...features];
+    updatedElement[i] = feature;
+    onUpdate({ [elementName]: updatedElement });
   };
 
   return (
@@ -14,8 +49,18 @@ function ContentElement(props) {
         {T.translate("contentElement.header") +
           T.translate(`templateEditor.${elementName}`)}
       </header>
-      <p>{JSON.stringify(values)}</p>
-      <TextFeature onUpdate={onUpdateFeature} />
+      <ContentFeatureSelector
+        features={features}
+        onSubmit={onUpdateFeatureFunction(features.length)}
+      />
+      <p>{JSON.stringify(features)}</p>
+      {features.map((featureObject, i) =>
+        featureEditors[Object.keys(featureObject)[0]](
+          featureObject,
+          i,
+          onUpdateFeatureFunction
+        )
+      )}
     </div>
   );
 }

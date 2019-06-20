@@ -9,11 +9,11 @@ const defaultTemplate = {
 };
 
 const elementEditors = {
-  content: (element, i, onUpdateElement, values) => (
+  content: (element, i, onUpdateElement, features) => (
     <ContentElement
       key={i}
       elementName={element}
-      values={values}
+      features={features}
       onUpdate={onUpdateElement()}
     />
   ),
@@ -33,9 +33,9 @@ const options = Object.keys(elementDefaults).map(key => ({
 const TemplateElementSelector = props => (
   <DropDownSelector
     options={options}
-    label={T.translate("templateEditor.featureSelectLabel")}
+    label={T.translate("templateEditor.elementSelectLabel")}
     defaultValue={options[0].value}
-    submitLabel={T.translate("templateEditor.featureSelectSubmit")}
+    submitLabel={T.translate("templateEditor.elementSelectSubmit")}
     handleSubmit={selectedElement =>
       props.onSubmit({
         ...props.template,

@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import T from "../../../utils/i18n";
 
 function TextFeature(props) {
-  const [feature, updateFeature] = useState({ text: "initial feature text" });
+  const { value } = props;
+  const [text, updateFeature] = useState(value || "initial feature text");
 
   const onSubmit = event => {
-    props.onUpdate(feature);
+    props.onUpdate({ text });
     event.preventDefault();
   };
   const onChange = event => {
-    updateFeature({ text: event.target.value });
+    updateFeature(event.target.value);
   };
 
   return (
@@ -18,7 +19,7 @@ function TextFeature(props) {
       <form onSubmit={onSubmit}>
         <label>
           {T.translate("textFeature.label")}
-          <input type="text" name="text" onChange={onChange} />
+          <input type="text" name="text" onChange={onChange} value={text} />
         </label>
         <input type="submit" value={T.translate("textFeature.update")} />
       </form>
