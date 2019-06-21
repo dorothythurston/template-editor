@@ -16,6 +16,7 @@ code {
   border: 1px solid black;
   background: rgb(230, 226, 230);
   float: left;
+  width: 25%;
 }
 
 .Container {
@@ -27,6 +28,7 @@ code {
   border: 1px solid black;
   background: rgb(230, 226, 230);
   float: right;
+  width: 70%;
 }
 
 .ContentElement {
@@ -50,4 +52,10 @@ code {
 .TextFeature {
   margin: 5px;
   border: 1px solid black;
+}
+
+.iFrame {
+  border: 1px solid black;
+  background: lightslategray;
+  width: 100%;
 }
