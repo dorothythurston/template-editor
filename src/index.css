@@ -40,3 +40,14 @@ code {
   background: whitesmoke;
   border: 1px solid black;
 }
+
+.ListFeature {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.TextFeature {
+  margin: 5px;
+  border: 1px solid black;
+}

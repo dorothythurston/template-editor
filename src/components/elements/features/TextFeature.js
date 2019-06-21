@@ -14,7 +14,7 @@ function TextFeature(props) {
   };
 
   return (
-    <div className="textFeature">
+    <div className="TextFeature">
       <header>{T.translate("textFeature.header")}</header>
       <form onSubmit={onSubmit}>
         <label>

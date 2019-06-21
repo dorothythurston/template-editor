@@ -14,9 +14,17 @@
     "header": "Edit Element: "
   },
   "textFeature": {
-    "header": "Edit Feature: ",
+    "header": "Edit Text: ",
     "label": "Text",
     "update": "Update"
+  },
+  "olFeature": {
+    "header": "Edit Ordered List: ",
+    "label": "Ordered List"
+  },
+  "ulFeature": {
+    "header": "Edit Unordered List: ",
+    "label": "Unordered List"
   },
   "stylesElement": {
     "header": "Styles",
@@ -24,7 +32,11 @@
   },
   "features": {
     "text": "Text",
+    "ol": "Ordered List",
+    "ul": "Unordered List",
     "featureSelectLabel": "Select",
-    "featureSelectSubmit": "Add"
+    "featureSelectSubmit": "Add",
+    "listSelectLabel": "Add Items",
+    "listSelectSubmit": "Add"
   }
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import T from "../../utils/i18n";
 import TextFeature from "./features/TextFeature";
+import OrderedListFeature from "./features/lists/OrderedListFeature";
+import UnorderedListFeature from "./features/lists/UnorderedListFeature";
 import DropDownSelector from "../DropDownSelector";
 
 const featureEditors = {
@@ -10,11 +12,27 @@ const featureEditors = {
       onUpdate={onUpdateFeatureFunction(i)}
       value={featureObject.text}
     />
+  ),
+  ol: (featureObject, i, onUpdateFeatureFunction) => (
+    <OrderedListFeature
+      key={i}
+      onUpdate={onUpdateFeatureFunction(i)}
+      items={featureObject.ol}
+    />
+  ),
+  ul: (featureObject, i, onUpdateFeatureFunction) => (
+    <UnorderedListFeature
+      key={i}
+      onUpdate={onUpdateFeatureFunction(i)}
+      items={featureObject.ul}
+    />
   )
 };
 
 const featureDefaults = {
-  text: { text: "Update me..." }
+  text: { text: "Update me..." },
+  ol: { ol: [{ text: "Update me..." }] },
+  ul: { ul: [{ text: "Update me..." }] }
 };
 
 const options = Object.keys(featureDefaults).map(key => ({
