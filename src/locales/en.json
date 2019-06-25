@@ -26,6 +26,11 @@
     "header": "Edit Unordered List: ",
     "label": "Unordered List"
   },
+  "tableFeature": {
+    "header": "Edit Table: ",
+    "columnCountLabel": "Columns",
+    "rowCountLabel": "Rows"
+  },
   "stylesElement": {
     "header": "Styles",
     "update": "Update"
@@ -34,6 +39,7 @@
     "text": "Text",
     "ol": "Ordered List",
     "ul": "Unordered List",
+    "table": "Table",
     "featureSelectLabel": "Select",
     "featureSelectSubmit": "Add",
     "listSelectLabel": "Add Items",

@@ -3,6 +3,7 @@ import T from "../../utils/i18n";
 import TextFeature from "./features/TextFeature";
 import OrderedListFeature from "./features/lists/OrderedListFeature";
 import UnorderedListFeature from "./features/lists/UnorderedListFeature";
+import TableFeature from "./features/TableFeature";
 import DropDownSelector from "../DropDownSelector";
 
 const featureEditors = {
@@ -26,13 +27,25 @@ const featureEditors = {
       onUpdate={onUpdateFeatureFunction(i)}
       items={featureObject.ul}
     />
+  ),
+  table: (featureObject, i, onUpdateFeatureFunction) => (
+    <TableFeature
+      key={i}
+      onUpdate={onUpdateFeatureFunction(i)}
+      items={featureObject.ul}
+    />
   )
 };
 
 const featureDefaults = {
   text: { text: "Update me..." },
   ol: { ol: [{ text: "Update me..." }] },
-  ul: { ul: [{ text: "Update me..." }] }
+  ul: { ul: [{ text: "Update me..." }] },
+  table: {
+    table: {
+      body: [["Header"], ["First Value"]]
+    }
+  }
 };
 
 const options = Object.keys(featureDefaults).map(key => ({
