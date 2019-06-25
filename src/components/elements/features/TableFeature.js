@@ -2,25 +2,23 @@ import React, { useState } from "react";
 import T from "../../../utils/i18n";
 
 function columnValue(value) {
-  return <td>value</td>;
+  return <td key={value}>{value}</td>;
 }
 
 function columns(values) {
-  console.log("IS THIS HERE??", values);
-  return values.forEach(value => <tr>{columnValue(value)}</tr>);
+  return (
+    <tbody>
+      <tr>{values.map(value => columnValue(value))}</tr>
+    </tbody>
+  );
 }
 
 function table(body) {
-  console.log("IS THIS HERE", body);
-  return <table>{body.forEach(row => columns(row))}</table>;
+  return <table>{body.map(row => columns(row))}</table>;
 }
 
 function TableFeature(props) {
-  //const { body } = props.value;
-  const body = [
-    ["Column 1", "Column 2", "Column 3"],
-    ["One value goes here", "Another one here", "OK?"]
-  ];
+  const { body } = props.value;
 
   const currentColumnCount = (body[0] || []).length;
   const currentRowCount = body.length;
@@ -42,8 +40,6 @@ function TableFeature(props) {
       ]
     }
   }, */
-
-  console.log("WTF IS", table(body));
 
   return (
     <div className="TableFeature">
@@ -70,7 +66,6 @@ function TableFeature(props) {
         <input type="submit" value={T.translate("tableFeature.update")} />
       </form>
       {table(body)}
-      {"whynot"}
     </div>
   );
 }
