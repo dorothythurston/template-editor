@@ -1,37 +1,32 @@
 import React, { useState } from "react";
 import T from "../../../utils/i18n";
-// import TextFeature from "../features/TextFeature";
-function headerColumnValue() {
-  return <th>header value</th>;
-}
 
-function columnValue() {
+function columnValue(value) {
   return <td>value</td>;
 }
 
-function headerColumns() {
-  return <tr>{headerColumnValue()}</tr>;
+function columns(values) {
+  console.log("IS THIS HERE??", values);
+  return values.forEach(value => <tr>{columnValue(value)}</tr>);
 }
 
-function columns(columnCount) {
-  return <tr>{columnValue()}</tr>;
-}
-
-function formatTable(body) {
-  return (
-    <table>
-      {headerColumns()}
-      {columns()}
-    </table>
-  );
+function table(body) {
+  console.log("IS THIS HERE", body);
+  return <table>{body.forEach(row => columns(row))}</table>;
 }
 
 function TableFeature(props) {
-  const { rows, columns } = props;
-  // column count is body[0].length
-  // row count is body.length
-  const [rowCount, updateRowCount] = useState(rows || 1);
-  const [columnCount, updateColumnCount] = useState(columns || 1);
+  //const { body } = props.value;
+  const body = [
+    ["Column 1", "Column 2", "Column 3"],
+    ["One value goes here", "Another one here", "OK?"]
+  ];
+
+  const currentColumnCount = (body[0] || []).length;
+  const currentRowCount = body.length;
+
+  const [rowCount, updateRowCount] = useState(currentRowCount || 1);
+  const [columnCount, updateColumnCount] = useState(currentColumnCount || 1);
 
   const onSubmit = event => {
     // props.onUpdate({ table });
@@ -47,6 +42,8 @@ function TableFeature(props) {
       ]
     }
   }, */
+
+  console.log("WTF IS", table(body));
 
   return (
     <div className="TableFeature">
@@ -72,7 +69,8 @@ function TableFeature(props) {
         </label>
         <input type="submit" value={T.translate("tableFeature.update")} />
       </form>
-      {formatTable()}
+      {table(body)}
+      {"whynot"}
     </div>
   );
 }

@@ -32,7 +32,7 @@ const featureEditors = {
     <TableFeature
       key={i}
       onUpdate={onUpdateFeatureFunction(i)}
-      items={featureObject.ul}
+      value={featureObject.table}
     />
   )
 };
